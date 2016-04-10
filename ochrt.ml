@@ -1,10 +1,10 @@
 open Printf;;
 open Char;;
 
-let filename =
-  if (Array.length Sys.argv) > 1 then
-    Sys.argv.(1)
-  else (print_endline "Need file argument" ; exit 1);;
+let f_in =
+  try
+    open_in_bin Sys.argv.(1)
+  with Invalid_argument _ -> stdin;;
 
 let print_binary num = 
  for i = 7 downto 0 do
@@ -13,7 +13,6 @@ let print_binary num =
 
 print_endline "indx int binary   hex  char";
 
-let f_in = open_in_bin filename in
 let byte_count = ref 0 in
 try
   while true do
