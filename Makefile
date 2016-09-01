@@ -1,2 +1,2 @@
-_:
-	ocamlopt ochrt.ml -o ochrt
+all:
+	$(CC) $(CFLAGS) ./bchrt.c -o bchrt
