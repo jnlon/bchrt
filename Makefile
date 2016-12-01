@@ -1,2 +1,2 @@
 all:
-	$(CC) $(CFLAGS) ./bchrt.c -o bchrt
+	$(CC) -Wall -Wextra $(CFLAGS) ./bchrt.c -o bchrt
