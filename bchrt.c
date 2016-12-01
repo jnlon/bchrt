@@ -47,6 +47,7 @@ void get_ascii_symbol(int code, char* buf) {
     case 31: strncpy(buf, "US", CHRBUFSZ); break;
     case 32: strncpy(buf, " ", CHRBUFSZ); break;
     case 127: strncpy(buf, "DEL", CHRBUFSZ); break;
+    default: strncpy(buf, "__ ", CHRBUFSZ); break;
   }
 
   return;
@@ -57,12 +58,12 @@ void print_help_exit() {
   exit(1);
 }
 
-void get_binary(int code, char* buf) {
+void get_binary(unsigned char code, char* buf) {
   for (int i=0;i<8;i++) {
-    if (((code >> (7-i)) % 2) == 1)
-      buf[i] = '1';
-    else 
+    if (((code >> (7-i)) % 2) == 0)
       buf[i] = '0';
+    else 
+      buf[i] = '1';
   }
   buf[8] = 0;
 }
@@ -75,7 +76,7 @@ void print_bchrt(char* buf, int sz, long long offset) {
 
   for (int i=0;i<sz;i++) {
 
-    char ch = buf[i];
+    unsigned char ch = buf[i];
     long long index = offset + i;
     get_ascii_symbol(ch, char_symbol_buf);
     get_binary(ch, binary_buf);
